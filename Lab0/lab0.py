@@ -8,31 +8,43 @@ def generate(x, z):
   tmp = x*z
   return tmp - floor(tmp)
 
-def generate_numbers(seed, results_count):
+def generate_numbers(z, results_count, start_value):
   x = np.arange(0, results_count)
   y = np.zeros(results_count)
 
-  y[0] = 0.01
+  y[0] = start_value
 
   for i in range(1, results_count):
-    y[i] = generate(y[i-1], seed)
+    y[i] = generate(y[i-1], z)
 
   return x, y
 
 
-seed = 69
-results_count = 1000
 
-x, y = generate_numbers(seed, results_count)
 
-fig, (ax1, ax2) = plt.subplots(2, 1)
-# fig.suptitle('A tale of 2 subplots')
+z = 69
+start_value = 0.01
+results_count = 20000
 
-ax1.plot(x, y, 'o')
-# ax1.set_ylabel('Damped oscillation')
+x, y = generate_numbers(z, results_count, start_value)
 
-ax2.hist(y)
-# ax2.set_xlabel('Wartość')
-# ax2.set_ylabel('Histogram')
+fig, (ax1) = plt.subplots(1, 1)
+# fig, (ax1, ax2) = plt.subplots(2, 1)
+
+title = "Z = " + str(z) + ", X = " + str(start_value)
+fig.suptitle(title)
+
+# ax1.plot(x, y, 'o')
+# ax1.set_ylabel('Wartość próbki')
+# ax1.set_xlabel('Numer próbki')
+
+ax1.hist(y)
+ax1.set_xlabel('Wartość próbki')
+ax1.set_ylabel('Ilość próbek o danej wartości')
 
 plt.show()
+
+
+# dla Z warto wybrać dużą liczbe pierwszą, nie może być równe 0
+# gdy iloczyn x i z jest całkowity, wszystkie kolejne wyniki są zerami
+# wartość początkowa nie może być równa zero

@@ -1,0 +1,59 @@
+
+
+\newcommand{\projekt}[1]{\newcommand{\xprojekt}{#1}}
+\newcommand{\autor}[1]{\newcommand{\xautor}{#1}}
+\newcommand{\przedmiot}[1]{\newcommand{\xprzedmiot}{#1}}
+\newcommand{\prowadzacy}[1]{\newcommand{\xprowadzacy}{#1}}
+
+\newcommand\StronaTytulowa{%
+
+\begin{titlepage}
+  \begin{center}
+   \textsc{\Large Sprawozdanie}\\[2ex]
+   \textsc{\xprzedmiot}\\
+% 
+   \mbox{}\hrulefill\\[2ex]
+   %
+   {\Large\bfseries \xprojekt}\\
+   %
+   \hrulefill\\
+   \vspace{1cm}
+   \mbox{}\hfill{\bfseries \xautor}\\[5pt]
+  % ----------------------------------------------------------------
+ \vspace{2cm}
+ \vfill
+ % ----------------------------------------------------------------
+ \mbox{}\hfill
+ \raisebox{-2ex}{%
+ \begin{minipage}{0.4\textwidth}
+  \mbox{}\hrulefill\mbox{}\\[-1ex]
+  \mbox{}\hrulefill\mbox{}\\[-1ex]
+  \mbox{}\hrulefill\mbox{}\\
+ \end{minipage}
+ }%
+% \raisebox{-4ex}{~~\includegraphics[width=0.10\textwidth]{sty/CyRobek.png}}
+\hspace*{2em}
+\begin{minipage}{0.38\textwidth}
+     {\it Prowadzący:}\\
+     \xprowadzacy
+% \begin{center}
+% {Katedra Cybernetyki i Robotyki}\\[3pt]
+% {Wydziału Elektroniki, Fotoniki i Mikrosystemów}\\[3pt]
+% {Politechniki Wrocławskiej}\\
+%         \end{center}
+ \end{minipage}
+    \vfill
+   {\today}
+ \end{center}
+\end{titlepage}
+% \end{titlepage}
+}
+
+
+\newcommand{\SpisTresci}{%
+ \pagenumbering{roman}
+ \tableofcontents
+ \pagenumbering{arabic}
+ \setcounter{page}{1}
+}
+
