@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
 import numpy as np
-from math import floor
 from matplotlib import pyplot as plt
 
 def generate(x, z):
   tmp = x*z
-  return tmp - floor(tmp)
+  return tmp - np.floor(tmp)
 
 def generate_numbers(z, results_count, start_value):
   x = np.arange(0, results_count)
