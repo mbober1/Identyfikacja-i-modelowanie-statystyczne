@@ -42,8 +42,3 @@ ax1.set_xlabel('Wartość próbki')
 ax1.set_ylabel('Ilość próbek o danej wartości')
 
 plt.show()
-
-
-# dla Z warto wybrać dużą liczbe pierwszą, nie może być równe 0
-# gdy iloczyn x i z jest całkowity, wszystkie kolejne wyniki są zerami
-# wartość początkowa nie może być równa zero
