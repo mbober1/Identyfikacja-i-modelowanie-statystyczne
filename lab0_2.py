@@ -17,26 +17,25 @@ def generate_numbers(results_count, start_value, c, m):
   return y
 
 
-start_value = 0.01
-results_count = 100000
-c = 0.02
-m = 0.17
+start_value = 0.001
+results_count = 150
+c = 0.01769
+m = 1 #zakres
 
 x = np.arange(0, results_count)
 y = generate_numbers(results_count, start_value, c, m)
 
-fig, (ax1) = plt.subplots(1, 1)
-# fig, (ax1, ax2) = plt.subplots(2, 1)
+title = "M = " + str(m) + ", C = " + str(c) + ", Start = " + str(start_value)
 
-# title = "Z = " + str(z) + ", X = " + str(start_value)
-# fig.suptitle(title)
+fig, (ax) = plt.subplots(1, 2)
+fig.suptitle(title)
+ax[0].plot(x, y, 'o')
+ax[0].set_ylabel('Wartość próbki')
+ax[0].set_xlabel('Numer próbki')
 
-# ax1.plot(x, y, 'o')
-# ax1.set_ylabel('Wartość próbki')
-# ax1.set_xlabel('Numer próbki')
-
-ax1.hist(y)
-# ax1.set_xlabel('Wartość próbki')
-# ax1.set_ylabel('Ilość próbek o danej wartości')
+ax[1].hist(y, density=True, label="Histogram")
+ax[1].set_xlabel('Wartość próbki')
+ax[1].set_ylabel('Ilość próbek o danej wartości')
+ax[1].legend()
 
 plt.show()
