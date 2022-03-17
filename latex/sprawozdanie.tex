@@ -15,6 +15,9 @@
 \usepackage{units}
 \usepackage{sty/style}
 \usepackage{float}
+\usepackage{mathtools}
+
+
 
 \projekt{Modelowanie i identyfikacja}
 \autor{Marcin Bober, 249426}
@@ -125,7 +128,7 @@
       0,1 & 7 & 4  \\
       0,1 & 8 & 4 
     \end{tabular}
-    \caption{Nastawy PD i odpowiadający im rząd błędu.}
+    \caption{Okres generatora w zależności od wartości Z}
     \label{table:1}
   \end{table}
 
@@ -158,6 +161,190 @@
     \includegraphics[height=0.25\textheight]{figures/Figure_13.png}
     \caption{Ilość wygenerowanych próbek - 20000}
     \label{fig:13}
+  \end{figure}
+
+  \begin{itemize}
+    \item Im więcej wygenerowaych próbek tym mocniej histogram upodabnia się do gęstości prawdopodobieństwa rozkładu jednostajnego.  
+  \end{itemize}
+
+\section{Generator dany równaniem}
+
+\subsection{Opis}
+Zadanie polega na implementacji generatora liczb pseudolosowych oraz analizie wyników uzyskanych z jego udziałem. Generator oparty jest na równaniu: 
+
+$X_{n+1}=(a_0X_{n} + a_1X_{n-1} + \ldots + a_{k}X_{n-k} + C)$mod $m$
+
+
+\subsection{Zależność od współczynnika m}
+Współczynnik $m$ odpowiada za zakres generowanych wartości.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{figures/Figure_14.png}
+  \caption{Zakres generowania liczb [0, 0.0174]}
+  \label{fig:14}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{figures/Figure_15.png}
+  \caption{Zakres generowania liczb [0, 1]}
+  \label{fig:15}
+\end{figure}
+
+
+\subsection{Zależność od współczynnika k}
+Współczynnik $k$ odpowiada za ilość poprzednich próbek używanych podczas generowania nowych wartości. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/Figure_20.png}
+  \caption{Współczynnik k=1}
+  \label{fig:14}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/Figure_21.png}
+  \caption{Współczynnik k=2}
+  \label{fig:14}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/Figure_22.png}
+  \caption{Współczynnik k=3}
+  \label{fig:14}
+\end{figure}
+
+
+\begin{itemize}
+  \item Współczynnik $m$ odpowiada za zakres generowanych wartości. Wybór liczby całkowitej może spowodować zatrzymanie generatora.
+  \item Ustawienie współczynnika $k$ na wartość równą jeden uniemożliwia generowanie wartości losowych.
+  \item Im większa wartość współczynnika $k$ tym lepsze wyniki generatora.
+\end{itemize}
+
+\section{Metoda odwracania dystrybuanty}
+  \subsection{Opis}
+    Metoda odwracania dystrybuanty polega na odwróceniu funkcji dystrybuanty. Do uzyskania funkcji dystrybuanty posłużymy się całkowaniem funkcji opisującej gęstość prawdopodobieństwa analizowanego rozkładu.
+
+  \subsection{Rozkład numer 1}
+  
+    Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+    \begin{equation}
+      f(x) = \begin{cases}
+          2x \quad dla \quad x  \in [0,1]\\
+          0 \quad dla \quad x  \in (-\infty, 0) \cup (1, \infty)\\
+        \end{cases}   
+    \end{equation}
+
+    Dystrybuanta:
+    \begin{equation}
+      F(x) = \begin{cases}
+          0 \quad dla \quad x  \in (-\infty, 0)\\
+          x^2 \quad dla \quad x  \in [0, 1]\\
+          1 \quad dla \quad x  \in (1, \infty)\\
+        \end{cases}   
+    \end{equation}
+
+    Odwrotna dystrybuanta:
+    \begin{equation}
+      F^{-1}(y) = \sqrt{y}.
+    \end{equation}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Figure_16.png}
+    \label{fig:16}
+  \end{figure}
+
+
+  \subsection{Rozkład numer 2}
+  
+  Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+  \begin{equation}
+    f(x) = \begin{cases}
+        x + 1 \quad dla \quad x  \in (-1, 0)\\
+        -x + 1 \quad dla \quad x  \in [0, 1)\\
+        0 \quad dla \quad x  \notin (-1, 1)\\
+      \end{cases}   
+  \end{equation}
+
+  Dystrybuanta:
+  \begin{equation}
+    F(x) = \begin{cases}
+        \frac{1}{2} - \frac{x^2}{2} + x \quad dla \quad x  \in [0, 1)\\
+        \frac{1}{2} + \frac{x^2}{2} + x \quad dla \quad x  \in (-1, 0)\\
+        0 \quad dla \quad x  \in (-\infty, -1]\\
+        1 \quad dla \quad x  \in [1, \infty)\\
+      \end{cases}   
+  \end{equation}
+
+  Odwrotna dystrybuanta:
+  \begin{equation}
+    F^{-1}(y) = \begin{cases}
+          \sqrt{2y} -1 \quad dla \quad x  \in [0, \frac{1}{2}]\\
+          1 -\sqrt{2 - 2y} \quad dla \quad x  \in (\frac{1}{2}, 1]\\
+        \end{cases}   
+  \end{equation}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Figure_17.png}
+    \label{fig:17}
+  \end{figure}
+
+  \subsection{Rozkład wykładniczy}
+  
+  Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+  \begin{equation}
+    f(x) = e^{-x}  \quad dla \quad x  \in [0, \infty)
+  \end{equation}
+
+  Dystrybuanta:
+  \begin{equation}
+    F(x) = 1 - e^{-x}  \quad dla \quad x  \in [0, \infty)
+  \end{equation}
+
+  Odwrotna dystrybuanta:
+  \begin{equation}
+    F^{-1}(y) = -ln(1 - y)  \quad dla \quad x  \in [0, \infty)
+  \end{equation}
+
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Figure_18.png}
+    \label{fig:18}
+  \end{figure}
+
+  \subsection{Rozkład Laplace'a}
+  
+  Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+  \begin{equation}
+    F(x) = \frac{1}{2} e^{-|x|} 
+  \end{equation}
+
+  Dystrybuanta:
+  \begin{equation}
+      F^{-1}(y) = \begin{cases}
+            \frac{1}{2} + \frac{1}{2} (1 - e^{-x})  \quad dla \quad x  \in [0, \infty)\\
+            \frac{1}{2} - \frac{1}{2} (1 - e^{-x})  \quad dla \quad x  \in (-\infty, 0)\\
+          \end{cases}   
+  \end{equation}
+
+  Odwrotna dystrybuanta:
+    \begin{equation}
+      F^{-1}(y) = \begin{cases}
+            -ln(1 - y) \quad dla \quad x  \in [0, \infty)\\
+            ln(1 + y) \quad dla \quad x  \in (-\infty, 0)\\
+          \end{cases}   
+    \end{equation}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Figure_19.png}
+    \label{fig:19}
   \end{figure}
 
 

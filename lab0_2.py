@@ -9,7 +9,10 @@ def generate_numbers(results_count, start_value, c, m, k):
   x[0] = start_value
   
   for i in range(1, results_count):
-    a = np.arange(i) + 1
+    if(i <= k):
+      a = np.arange(i) + 1
+    else:
+      a = np.append(a, 0)
 
     tmp = a * np.flip(x)
     x = np.append(x, np.mod(tmp.sum() +c, m))
@@ -17,16 +20,16 @@ def generate_numbers(results_count, start_value, c, m, k):
   return x
 
 
-start_value = 0.2137
-results_count = 10000
+start_value = 0.01137
+results_count = 100
 c = 0.01769
 m = 1 #zakres
-k = 10
+k = 20
 
 x = np.arange(0, results_count)
 y = generate_numbers(results_count, start_value, c, m, k)
 
-title = "M = " + str(m) + ", C = " + str(c) + ", Start = " + str(start_value)
+title = "M = " + str(m) + ", C = " + str(c) + ", Start = " + str(start_value)  + ", k = " + str(k) 
 
 fig, (ax) = plt.subplots(1, 2)
 fig.suptitle(title)
