@@ -1,4 +1,4 @@
-# PWR_Identyfikacja_i_modelowanie_statystyczne
+# PWR Identyfikacja i modelowanie statystyczne
 Exercise implemented during classes at the Wrocław University of Technology.
 
 Prowadzący: Mgr inż. Maciej Filiński
@@ -18,3 +18,8 @@ Instrukcja:  http://pawel.wachel.staff.iiar.pwr.wroc.pl/ModelowanieLab0.pdf
 Metoda odwracania dystrybuanty
 
 Instrukcja:  http://pawel.wachel.staff.iiar.pwr.wroc.pl/ModelowanieLab1.pdf
+
+## Lab2
+Metoda odrzucania
+
+Instrukcja:  http://pawel.wachel.staff.iiar.pwr.wroc.pl/ModelowanieLab2.pdf
