@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-from cProfile import label
 import numpy as np
 from matplotlib import pyplot as plt
 
 x = np.arange(-5, 5, 0.00001)
 count = 100000
+c = np.sqrt(2 * np.e / np.pi)
 
 f = lambda x: (1 / np.sqrt(2 * np.pi)) * np.exp(-np.power(x, 2)/2)
-g = lambda x: np.sqrt(2 * np.e / np.pi) * 0.5 * np.exp(-np.abs(x))
+g = lambda x: c * 0.5 * np.exp(-np.abs(x))
+# f3 = lambda x:  np.log(2*x) * (x <= 1/2) - np.log(-2*x + 2) * (x > 1/2)
 # g = lambda x: 0.4 * (x >= -5) * (x <= 5)
 
 y1 = f(x)

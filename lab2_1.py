@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from cProfile import label
-from random import random
 import numpy as np
 from matplotlib import pyplot as plt
 
