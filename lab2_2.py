@@ -3,19 +3,21 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-x = np.arange(0, 1, 0.00001)
+x = np.arange(0, 2, 0.00001)
 c = 0.5/0.99
-count = 100000
+count = 1000
 
 f = lambda x: 50 * (x > 0) * (x <= 0.01)   +   c * (x > 0.01) * (x <= 1)
-g = lambda x: 50 * np.exp(-4.1*(x-0.01)) * (x >= 0)
-# g = lambda x: 50 * (x >= 0) * (x < 1)
+g = lambda x: 50 * np.exp(-4.1 * (x-0.01)) * (x >= 0)
+g_inv = lambda x: -0.243902 *  np.log(0.01919658259895598*x)
+
 
 y1 = f(x)
 y2 = g(x)
 
-ran_x = np.random.uniform(0, 1, count)
-ran_y = np.random.uniform(0, g(ran_x), count)
+ran_x = g_inv(np.random.uniform(0, 52, count))
+ran_y = np.random.uniform(0, 1, count) * g(ran_x)
+
 good_x = []
 good_y = []
 bad_x = []
