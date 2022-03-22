@@ -348,6 +348,169 @@ Współczynnik $k$ odpowiada za ilość poprzednich próbek używanych podczas g
   \end{figure}
 
 
+\section{Metoda odrzucania}
+  \subsection{Rozkład numer 1}
+    
+  Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+  \begin{equation}
+    f(x) = \begin{cases}
+        x + 1 \quad dla \quad x  \in (-1, 0]\\
+        -x + 1 \quad dla \quad x  \in (0, 1]\\
+        0 \quad dla \quad x  \in (-\infty, -1] \cup (1, \infty)\\
+      \end{cases}   
+  \end{equation}
+
+  Przybliżenie funkcji f(x) z użyciem funkcji g(x):
+  \begin{equation}
+    g(x) = \frac{1}{2} e^{-|x|}
+  \end{equation}
+
+  Odwrotna dystrybuanta:
+  \begin{equation}
+    G^{-1}(y) =   \quad dla \quad x  \in [0, \infty)
+    \begin{cases}
+      ln(2x) \quad dla \quad x  \in (-\infty, \frac{1}{2}]\\
+      -ln(2-2x) \quad dla \quad x  \in (\frac{1}{2}, \infty)\\
+    \end{cases} 
+  \end{equation}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.4\textheight]{figures/Figure_23.png}
+    \label{fig:23}
+    \caption{Generacja próbek rozkładu 1}
+  \end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.4\textheight]{figures/Figure_24.png}
+    \label{fig:24}
+    \caption{Histogram rozkładu 1}
+
+  \end{figure}
+
+  \subsection{Rozkład numer 2}
+      
+  Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+  \begin{equation}
+    f(x) = \begin{cases}
+        50 \quad dla \quad x  \in (0, \frac{1}{100}]\\
+        c \quad dla \quad x  \in (\frac{1}{100}, 1]\\
+      \end{cases}   
+  \end{equation}
+
+  Współczynnik $c$ został wyznaczony w następujący sposób:
+  \begin{equation}
+    50 \cdot \frac{1}{100} + c \cdot 1 - \frac{1}{100} = 1
+  \end{equation}
+
+  \begin{equation}
+    c \cdot 1 - \frac{1}{100} = 1 - \frac{50}{100}
+  \end{equation}
+
+  \begin{equation}
+    c = \frac{0.5}{\frac{99}{100}}
+  \end{equation}
+  
+
+  Przybliżenie funkcji f(x) z użyciem funkcji g(x):
+  \begin{equation}
+    g(x) = 50 \cdot e^{-4.1 \cdot (x-0.01)}  \quad dla \quad x  \in [0, \infty) \\
+  \end{equation}
+
+  Odwrotna dystrybuanta:
+  \begin{equation}
+    g(x) = -0.244 \cdot ln(0.01919 \cdot x)
+  \end{equation}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.4\textheight]{figures/Figure_25.png}
+    \label{fig:25}
+    \caption{Generacja próbek rozkładu 2}
+  \end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.4\textheight]{figures/Figure_26.png}
+    \label{fig:26}
+    \caption{Histogram rozkładu 2}
+
+  \end{figure}
+
+
+\subsection{Półokrąg}
+      
+Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+\begin{equation}
+  f(x) = \sqrt{r^2 - x^2 }
+\end{equation}
+
+Przybliżenie funkcji f(x) z użyciem funkcji g(x):
+\begin{equation}
+  g(x) = 1  \quad dla \quad x  \in [-1, 1] \\
+\end{equation}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.4\textheight]{figures/Figure_27.png}
+  \label{fig:27}
+  \caption{Generacja próbek dla półokręgu}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.4\textheight]{figures/Figure_28.png}
+  \label{fig:28}
+  \caption{Histogram rozkładu dla półokręgu}
+
+\end{figure}
+
+\subsection{Rozkład Normalny}
+      
+Równanie funkcji rozkładu gęstość prawdopodobieństwa:
+\begin{equation}
+  f(x) = \frac{1}{\sqrt{2 \pi}} \cdot e^{\frac{-x^2}{2}}
+\end{equation}
+
+
+Przybliżenie funkcji f(x) z użyciem funkcji g(x):
+\begin{equation}
+  g(x) = \sqrt{\frac{2e}{\pi}} \cdot \frac{1}{2} \cdot e^{-|x|}
+\end{equation}
+
+Odwrotna dystrybuanta:
+\begin{equation}
+  g(x) = \begin{cases}
+      ln(2x) \quad dla \quad x  \in (-\infty, \frac{1}{2}]\\
+      -ln(2+2x) \quad dla \quad x  \in (\frac{1}{2}, \infty)\\
+    \end{cases}   
+\end{equation}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.4\textheight]{figures/Figure_29.png}
+  \label{fig:29}
+  \caption{Generacja próbek rozkładu normalnego}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.4\textheight]{figures/Figure_30.png}
+  \label{fig:30}
+  \caption{Histogram rozkładu normalnego}
+
+\end{figure}
+
+\subsection{Wnioski}
+\begin{itemize}
+  \item Metoda eliminacji jest metodą stratna ponieważ w zależności od dobranej funkcji g(x), odrzucana jest pewna ilość losowań.
+  \item Im lepiej dobierzemy funkcję pomocniczą tym większa efektywność generatora.
+  \item Funkcja pomocnicza musi być odwrócona, więc należy dobierać funkcje możliwie trywialne.
+  \item Stała $C$ może być dobrana dowolnie duża, ale wyznaczenie jej analitycznie minimalizuje straty.
+\end{itemize}
+
+\section{Estymacja}
 \section{Podsumowanie}
 
 \end{document}
