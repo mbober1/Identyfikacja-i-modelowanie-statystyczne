@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from unittest import result
 import numpy as np
 from matplotlib import pyplot as plt
   
